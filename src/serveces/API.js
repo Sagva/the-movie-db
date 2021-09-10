@@ -14,7 +14,17 @@ export const getLatestMovies = async() => {
     const response = await axios.get(`now_playing?api_key=${api_key}&language=en-US&page=1`)
     return response.data
 }
+export const getPopularMovies = async() => {
+    const response = await axios.get(`popular?api_key=${api_key}&language=en-US&page=1`)
+    return response.data
+}
+export const gettTopRatedMovies = async() => {
+    const response = await axios.get(`top_rated?api_key=${api_key}&language=en-US&page=1`)
+    return response.data
+}
 
 export default {
-    getLatestMovies
+    getLatestMovies,
+    getPopularMovies,
+    gettTopRatedMovies
 }

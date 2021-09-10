@@ -1,30 +1,40 @@
 import {createContext, useState, useEffect} from 'react'
 import { useQuery } from 'react-query';
-import {getLatestMovies} from '../serveces/API'
-
+import {getLatestMovies, getPopularMovies, gettTopRatedMovies} from '../serveces/API'
+import {addPosterLink} from '../utilities/addPosterLink'
 export const MovieContext = createContext()
 
 const MovieContextProvider = (props) => {
 
-    const [movies, setMovies] = useState(null)
-    const {data, error} = useQuery('latestMovies', getLatestMovies)
+    const [latestMovies, setLatestMovies] = useState(null)
+    const [popularMovies, setPopularMovies] = useState(null)
+    const [topRatedMovies, setTopRatedMovies] = useState(null)
 
-    
+    const {data:latest, isError:errorLatest } = useQuery('latestMovies', getLatestMovies)
+    const {data:popular, isError:errorPopular} = useQuery('popularMovies', getPopularMovies)
+    const {data:topRated, isError:errorTopRated} = useQuery('topRated', gettTopRatedMovies)
+
+       
     useEffect(()=> {
-        if(data) {
-            const moviesWithPosters = data.results.map((movie) => {
-                movie.posterLink = `https://image.tmdb.org/t/p/w154/${movie.poster_path}`
-                return movie
-            })
-            setMovies(moviesWithPosters)
+        if(latest) {
+            setLatestMovies(addPosterLink(latest.results))
         }
-    }, [data])
+        if(popular) {
+            setPopularMovies(addPosterLink(popular.results))
+        }
+        if(topRated) {
+            setTopRatedMovies(addPosterLink(topRated.results))
+        }
+    }, [latest, popular, topRated])
 
 
     const values = {
-        movies,
-        
-        error
+        latestMovies,
+        popularMovies,
+        topRatedMovies,
+        errorLatest,
+        errorPopular,
+        errorTopRated
     }
 
     return ( 

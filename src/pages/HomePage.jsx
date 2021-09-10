@@ -1,32 +1,44 @@
-import React, { useContext} from 'react';
+import React, { useContext } from 'react';
 import MovieList from '../components/MovieList';
 import { MovieContext } from '../contexts/MovieContext';
 
 const HomePage = () => {
 
-    const {movies, error} = useContext(MovieContext)
+    const { latestMovies, popularMovies, topRatedMovies, errorLatest, errorPopular, errorTopRated } = useContext(MovieContext)
 
-    let content = 'Loading'
+    const renderMovie = (movieList, errorMessage) => {
+        if (movieList) {
+            return (
+                <MovieList movies={movieList} />
+            )
+        } else if (errorMessage) {
+            return (
+                <div className="container">Some error has occurred {errorMessage} </div>
+            )
+        }
+        return (
+            <div className="container">Loading... </div>
+        )
+    }
 
-    if (movies) {
-        content =
-            <div className="container" >
-                <h1>Home page</h1>
-            
-                <MovieList movies={movies}/> 
-            </div>
-    }
-    else if (error) {
-        content = <div className="container">Some error has occurred {error} </div>
-    }
+
 
     return (
         <div className='container'>
-            {content}
+            <h1>Home page</h1>
+
+            <h2>Latest Movies</h2>
+            {renderMovie(latestMovies, errorLatest)}
+
+            <h2>Popular Movies</h2>
+            {renderMovie(popularMovies, errorPopular)}
+
+            <h2>Top-rated Movies</h2>
+            {renderMovie(topRatedMovies, errorTopRated)}
         </div>
     )
 
-    
+
 }
- 
+
 export default HomePage;
