@@ -1,26 +1,30 @@
-import React, {useEffect} from 'react';
+import React, { useContext} from 'react';
 import MovieList from '../components/MovieList';
-import { useQuery } from 'react-query';
-import {getLatestMovies} from '../serveces/API'
+import { MovieContext } from '../contexts/MovieContext';
 
 const HomePage = () => {
-    const {data, isLoading, error} = useQuery('latestMovies', getLatestMovies)
 
-    useEffect(()=> {
-        console.log(`data`, data)
-    }, [data])
+    const {movies, error} = useContext(MovieContext)
 
-    if(isLoading) {return(<div className="container">Loading...</div>  )}
-    if(error) {return(<div className="container">Some error has occurred {error} </div>)}
+    let content = 'Loading'
 
-
-    if(data) {
-        return(<div>
-            <h1>Home page</h1>
+    if (movies) {
+        content =
+            <div className="container" >
+                <h1>Home page</h1>
             
-             <MovieList movies={data.results}/> 
-        </div>  )
+                <MovieList movies={movies}/> 
+            </div>
     }
+    else if (error) {
+        content = <div className="container">Some error has occurred {error} </div>
+    }
+
+    return (
+        <div className='container'>
+            {content}
+        </div>
+    )
 
     
 }
