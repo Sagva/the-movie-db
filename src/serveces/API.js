@@ -20,10 +20,15 @@ export const getMovieById = async(movieId) => {
     const response = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${api_key}&append_to_response=credits`)
     return response.data
 }
+export const getActorById = async(actorId) => {
+    const response = await axios.get(`https://api.themoviedb.org/3/person/${actorId}?api_key=${api_key}&language=en-US&append_to_response=credits`)
+    return response.data
+}
 
 export default {
     getLatestMovies,
     getPopularMovies,
     getTopRatedMovies,
-    getMovieById
+    getMovieById,
+    getActorById
 }

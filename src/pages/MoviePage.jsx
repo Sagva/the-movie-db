@@ -71,12 +71,7 @@ const MoviePage = () => {
                             { !showFullCast && <Button type="button" className="btn btn-link" onClick={()=> setShowFullCast(true)}>All</Button>}
                             {showFullCast && <CastInfo actors = {movie.credits.cast}/>}
                         </div>
-
-
-                        
-
                     </Col>
-
                 </div>
             )
         } else if (isError) {
