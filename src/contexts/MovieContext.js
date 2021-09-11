@@ -1,6 +1,6 @@
 import {createContext, useState, useEffect} from 'react'
 import { useQuery } from 'react-query';
-import {getLatestMovies, getPopularMovies, gettTopRatedMovies} from '../serveces/API'
+import {getLatestMovies, getPopularMovies, getTopRatedMovies} from '../serveces/API'
 import {addPosterLink} from '../utilities/addPosterLink'
 export const MovieContext = createContext()
 
@@ -12,7 +12,7 @@ const MovieContextProvider = (props) => {
 
     const {data:latest, isError:errorLatest } = useQuery('latestMovies', getLatestMovies)
     const {data:popular, isError:errorPopular} = useQuery('popularMovies', getPopularMovies)
-    const {data:topRated, isError:errorTopRated} = useQuery('topRated', gettTopRatedMovies)
+    const {data:topRated, isError:errorTopRated} = useQuery('topRated', getTopRatedMovies)
 
        
     useEffect(()=> {

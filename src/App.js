@@ -1,12 +1,27 @@
 import './App.css';
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import MovieContext from './contexts/MovieContext';
 import HomePage from './pages/HomePage';
-import  MovieContext from './contexts/MovieContext';
+import MoviePage from './pages/MoviePage';
+import PageNotFound from './pages/PageNotFound';
 
 function App() {
   return (
     <div className="App">
       <MovieContext>
-        <HomePage />
+        <BrowserRouter>
+          <Switch>
+            <Route exact path="/">
+              <HomePage />
+            </Route>
+            <Route exact path="/movie/:id">
+              <MoviePage />
+            </Route>
+            <Route>
+              <PageNotFound />
+            </Route>
+          </Switch>
+        </BrowserRouter>
       </MovieContext>
     </div>
   );
