@@ -5,12 +5,15 @@ import HomePage from './pages/HomePage';
 import MoviePage from './pages/MoviePage';
 import PageNotFound from './pages/PageNotFound';
 import ActorInfoPage from './pages/ActorInfoPage'
+import Navigation from './components/Navigation'
+import GenreListPage from './pages/GenreListPage'
 
 function App() {
   return (
     <div className="App">
       <MovieContext>
         <BrowserRouter>
+          <Navigation/>
           <Switch>
             <Route exact path="/">
               <HomePage />
@@ -20,6 +23,9 @@ function App() {
             </Route>
             <Route exact path="/actor/:id">
               <ActorInfoPage />
+            </Route>
+            <Route exact path="/genres">
+              <GenreListPage />
             </Route>
             <Route>
               <PageNotFound />
