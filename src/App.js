@@ -4,6 +4,7 @@ import MovieContext from './contexts/MovieContext';
 import HomePage from './pages/HomePage';
 import MoviePage from './pages/MoviePage';
 import PageNotFound from './pages/PageNotFound';
+import ActorInfoPage from './pages/ActorInfoPage'
 
 function App() {
   return (
@@ -16,6 +17,9 @@ function App() {
             </Route>
             <Route exact path="/movie/:id">
               <MoviePage />
+            </Route>
+            <Route exact path="/actor/:id">
+              <ActorInfoPage />
             </Route>
             <Route>
               <PageNotFound />
