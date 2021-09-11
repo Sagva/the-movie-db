@@ -1,40 +1,23 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { getActorById } from '../serveces/API'
 import Figure from 'react-bootstrap/Figure'
+import Image from 'react-bootstrap/Image'
+import { getYearFromDateString } from '../utilities/getYearFromDateString'
 
 const ActorInfoPage = () => {
     const { id } = useParams()
 
     const { data: actor, isError } = useQuery([`actor-${id}`, id], () => getActorById(id))
 
-    //     adult: false
-    // also_known_as: ['Steve Lang']
-    // biography: "​From Wikipedia, the free encyclopedia\n\nStephen Lang (born July 11, 1952) is an American actor and playwright. He started in theatre on Broadway but is well known for his film portrayals of Stonewall Jackson in Gods and Generals (2003), George Pickett in Gettysburg (1993), and his 2009 roles as Colonel Miles Quaritch in Avatar and as Texan lawman Charles Winstead in Public Enemies. Lang was the co-artistic director (along with Carlin Glynn and Lee Grant) of the famed Actor's Studio at its headquarters in New York City from 2004 to 2006.\n\nDescription above from the Wikipedia article Stephen Lang (actor), licensed under CC-BY-SA, full list of contributors on Wikipedia."
-    // birthday: "1952-07-11"
-    // credits: {cast: Array(97), crew: Array(4)}
-    // deathday: null
-    // gender: 2
-    // homepage: null
-    // id: 32747
-    // imdb_id: "nm0002332"
-    // known_for_department: "Acting"
-    // name: "Stephen Lang"
-    // place_of_birth: "New York City, New York, USA"
-    // popularity: 21.762
-    // profile_path: "/h7ZoTwpELoz1IlIgx0ujoA2p9Sp.jpg"
-
-
-    console.log(`actor`, actor)
-
     const renderActorInfo = () => {
         if (actor) {
             return (
                 <div className='row'>
                     <h1>{actor.name}</h1>
-                    <div>
-                        { actor.birthday && <div><b>Born: {actor.birthday}</b>, </div>}
+                    <div className='d-flex flex-column align-items-start'>
+                        {actor.birthday && <div><b>Born: {actor.birthday}</b>, </div>}
                         <div><b>{actor.place_of_birth}</b> </div>
                         {actor.deathday && <div><b>Death: {actor.deathday}</b> </div>}
                     </div>
@@ -46,11 +29,29 @@ const ActorInfoPage = () => {
                         />
                     </Figure>
                     <div>
-                        <p className='text-start'> 
+                        <p className='text-start'>
                             {actor.biography}
                         </p>
                     </div>
+                    <div>
+                        <hr style={{ color: '#000000', backgroundColor: '#000000', height: .5, borderColor: '#000000' }} />
 
+                        <h2 className='my-4'>Filmography</h2>
+                        <div>
+
+                            {actor.credits.cast.map((movie, i) => {
+                                return (
+                                    <div key={i} className='d-flex'>
+                                        <Image className='my-2 mx-2' style={{ width: 50 }} src={`https://image.tmdb.org/t/p/w92${movie.poster_path}`} />
+                                        <div className='d-flex flex-column justify-content-center align-items-start'>
+                                            <Link to={`/movie/${movie.id}`}>{movie.title} ({getYearFromDateString(`${movie.release_date}`)})</Link>
+                                            { <span className='text-secondary font-weight-light small'>{movie.character}</span>}
+                                        </div>
+                                    </div>
+                                )
+                            })}
+                        </div>
+                    </div>
                 </div>
             )
         } else if (isError) {
