@@ -22,7 +22,7 @@ const MoviesByGenrePage = () => {
         if (data) {
             return (
                 <div>
-                    <h1>Movies By Genre </h1>
+                    <h2 className='my-4'>Movies By Genre </h2>
                     <div>
                         {data.results.map((movie, i) => <MovieByGenreCard key={i} movie={movie} />)}
                     </div>

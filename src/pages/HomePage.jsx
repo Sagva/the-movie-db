@@ -24,15 +24,14 @@ const HomePage = () => {
 
     return (
         <div className='container'>
-            <h1>Home page</h1>
 
-            <h2>Latest Movies</h2>
+            <h2 className='my-3 ms-2'>Latest Movies</h2>
             {renderMovie(latestMovies, errorLatest)}
 
-            <h2>Popular Movies</h2>
+            <h2 className='my-3 ms-2'>Popular Movies</h2>
             {renderMovie(popularMovies, errorPopular)}
 
-            <h2>Top-rated Movies</h2>
+            <h2 className='my-3 ms-2'>Top-rated Movies</h2>
             {renderMovie(topRatedMovies, errorTopRated)}
         </div>
     )

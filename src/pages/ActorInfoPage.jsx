@@ -15,7 +15,7 @@ const ActorInfoPage = () => {
         if (actor) {
             return (
                 <div className='row'>
-                    <h1>{actor.name}</h1>
+                    <h2 className='my-4'>{actor.name}</h2>
                     <div className='d-flex flex-column align-items-start'>
                         {actor.birthday && <div><b>Born: {actor.birthday}</b>, </div>}
                         <div><b>{actor.place_of_birth}</b> </div>

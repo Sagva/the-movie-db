@@ -17,9 +17,11 @@ const GenreListPage = () => {
         if (genres) {
             return (
                 <div>
-                    <h1>Discover Movies By Genre</h1>
-                    <div className='d-flex flex-column flex-md-row flex-md-wrap justify-content-md-between my-4'>
-                        {genres.genres.map((genre, i) => <Button className='my-2 mx-2' onClick={()=>handleClick(genre.id)} key={i} variant="outline-secondary">{genre.name}</Button>)}
+                    <h2 className='my-4'>Discover Movies By Genre</h2>
+                    <div className='d-flex flex-column flex-md-row flex-md-wrap justify-content-md-start my-4'>
+                        {genres.genres.map((genre, i) => {
+                            return (<Button className='my-2 mx-2' style={{width: 150}} onClick={() => handleClick(genre.id)} key={i} variant="outline-secondary">{genre.name}</Button>)
+                        })}
                     </div>
                 </div>
             )
