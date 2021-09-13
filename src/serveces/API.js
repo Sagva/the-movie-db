@@ -28,6 +28,10 @@ export const getAllGenres = async() => {
     const response = await axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${api_key}&language=en-US`)
     return response.data
 }
+export const getMoviesByGenre = async(genreId) => {
+    const response = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&language=en-US&include_adult=false&sort_by=popularity.desc&with_genres=${genreId}&page=1`)
+    return response.data
+}
 
 export default {
     getLatestMovies,
@@ -35,5 +39,6 @@ export default {
     getTopRatedMovies,
     getMovieById,
     getActorById,
-    getAllGenres
+    getAllGenres,
+    getMoviesByGenre
 }

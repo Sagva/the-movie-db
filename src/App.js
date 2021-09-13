@@ -7,6 +7,7 @@ import PageNotFound from './pages/PageNotFound';
 import ActorInfoPage from './pages/ActorInfoPage'
 import Navigation from './components/Navigation'
 import GenreListPage from './pages/GenreListPage'
+import MoviesByGenrePage from './pages/MoviesByGenrePage';
 
 function App() {
   return (
@@ -26,6 +27,9 @@ function App() {
             </Route>
             <Route exact path="/genres">
               <GenreListPage />
+            </Route>
+            <Route exact path="/genre/:id">
+              <MoviesByGenrePage />
             </Route>
             <Route>
               <PageNotFound />

@@ -1,0 +1,41 @@
+import React from 'react';
+import { useParams } from 'react-router-dom';
+import { useQuery } from 'react-query';
+import { getMoviesByGenre } from '../serveces/API'
+import MovieByGenreCard from '../components/MovieByGenreCard'
+
+const MoviesByGenrePage = () => {
+    const { id } = useParams()
+
+    const { data, isError } = useQuery([`moviesByGenre-${id}`, id], () => getMoviesByGenre(id))
+
+   
+    const renderMovieList = () => {
+        if (data) {
+            return (
+                <div>
+                    <h1>Movies By Genre </h1>
+                    <div>
+                        {data.results.map((movie, i) => <MovieByGenreCard key={i} movie={movie}/>)}
+                    </div>
+                </div>
+
+            )
+        } else if (isError) {
+            return (
+                <div className="container">Some error has occurred </div>
+            )
+        }
+        return (
+            <div className="container">Loading... </div>
+        )
+    }
+
+    return (
+        <div className='container'>
+            {renderMovieList()}
+        </div>
+    );
+}
+
+export default MoviesByGenrePage;
