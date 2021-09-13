@@ -13,7 +13,7 @@ const MovieCard = ({movieData}) => {
         <Card style={{ width: '10rem' }} className='mx-2 my-2' onClick={handleClick}>
         <Card.Img variant="top" src={movieData.posterLink} />
         <Card.Body>
-          <Card.Title>{movieData.title}</Card.Title>
+          <Card.Title style={{fontSize: 14}}>{movieData.title}</Card.Title>
         </Card.Body>
       </Card>
     );
