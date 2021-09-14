@@ -7,7 +7,7 @@ import { convertMinutesToHours } from '../utilities/convertMinutesToHours'
 import { getMovieById } from '../serveces/API'
 import CastInfo from '../components/CastInfo';
 import Button from '@restart/ui/esm/Button';
-
+import replaceEmptyImage300x450 from '../img/replaceEmptyImage300x450.jpg'
 
 const MoviePage = () => {
     const { id } = useParams()
@@ -26,7 +26,7 @@ const MoviePage = () => {
                         <div className='d-flex flex-column flex-md-row-reverse align-items-start justify-content-md-end mb-3'>
                             <div className='d-flex flex-column align-items-start mb-3' >
                                 <div className='d-flex'>
-                                    {movie.release_date && <span className=''><b>{getYearFromDateString(movie.release_date)},</b></span>}
+                                    {movie.release_date && <span><b>{getYearFromDateString(movie.release_date)},</b></span>}
                                     {movie.genres.map((genre, i) => {
                                         if (i <= 1) {
                                             return <span className='mx-1' key={i}><b>{genre.name}</b></span>
@@ -38,13 +38,18 @@ const MoviePage = () => {
                                     {movie.runtime && <div><b>{convertMinutesToHours(movie.runtime)}</b></div>}
                                     <div>{movie.production_countries.map((country, i) => <span key={i} className='px-2'><b>{country.name}</b></span>)}</div>
                                 </div>
-                                <div><span><b>Language:</b></span> {movie.spoken_languages.map((lang, i) => <span key={i}>{lang.english_name} </span>)}</div>
+                                {movie.spoken_languages.length > 0 &&
+                                    <div>
+                                        <span><b>Language: </b></span>
+                                        {movie.spoken_languages.map((lang, i) => <span key={i}>{lang.english_name} </span>)}
+                                    </div>
+                                }
                             </div>
                             <Figure className='me-md-5'>
                                 <Figure.Image
                                     width={300}
                                     alt={`${movie.title} poster`}
-                                    src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`}
+                                    src={movie.poster_path ? `https://image.tmdb.org/t/p/w342/${movie.poster_path}` : replaceEmptyImage300x450}
                                 />
                                 <Figure.Caption>
                                     {movie.tagline}

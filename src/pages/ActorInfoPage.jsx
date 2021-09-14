@@ -5,6 +5,7 @@ import { getActorById } from '../serveces/API'
 import Figure from 'react-bootstrap/Figure'
 import Image from 'react-bootstrap/Image'
 import { getYearFromDateString } from '../utilities/getYearFromDateString'
+import replaceEmptyImage70x90 from '../img/replaceEmptyImage70x90.jpg'
 
 const ActorInfoPage = () => {
     const { id } = useParams()
@@ -42,9 +43,11 @@ const ActorInfoPage = () => {
                             {actor.credits.cast.map((movie, i) => {
                                 return (
                                     <div key={i} className='d-flex'>
-                                        <Image className='my-2 mx-2' style={{ width: 50 }} src={`https://image.tmdb.org/t/p/w92${movie.poster_path}`} />
+                                        <Image className='my-2 mx-2' style={{ width: 50 }} 
+                                            src={movie.poster_path ? `https://image.tmdb.org/t/p/w92${movie.poster_path}` : replaceEmptyImage70x90} 
+                                        />
                                         <div className='d-flex flex-column justify-content-center align-items-start'>
-                                            <Link to={`/movie/${movie.id}`}>{movie.title} ({getYearFromDateString(`${movie.release_date}`)})</Link>
+                                            <Link to={`/movie/${movie.id}`}>{movie.title} ({movie.release_date && getYearFromDateString(`${movie.release_date}`)})</Link>
                                             { <span className='text-secondary font-weight-light small'>{movie.character}</span>}
                                         </div>
                                     </div>
