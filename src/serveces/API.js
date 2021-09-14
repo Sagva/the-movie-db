@@ -27,19 +27,9 @@ export const getActorById = async(actorId) => {
 }
 export const getAllGenres = async() => {
     const response = await axios.get(`3/genre/movie/list?api_key=${api_key}&language=en-US`)
-    return response.data
+    return response.data.genres
 }
 export const getMoviesByGenre = async(genreId, page) => {
     const response = await axios.get(`/3/discover/movie?api_key=${api_key}&language=en-US&include_adult=false&sort_by=popularity.desc&with_genres=${genreId}&page=${page}`)
     return response.data
-}
-
-export default {
-    getLatestMovies,
-    getPopularMovies,
-    getTopRatedMovies,
-    getMovieById,
-    getActorById,
-    getAllGenres,
-    getMoviesByGenre
 }

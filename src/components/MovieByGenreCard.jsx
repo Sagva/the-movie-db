@@ -13,11 +13,10 @@ const MovieByGenreCard = ({ movie }) => {
     return (
         <div className='mx-2 my-2' onClick={handleClick} style={{cursor: 'pointer', borderBottom: '1px solid #d3d3d3'}}> 
             <h3 style={{textAlign: 'start'}}>{movie.title}</h3>
-            {movie.release_date && <span className=''><b>{getYearFromDateString(movie.release_date)},</b></span>}
             <div className='d-flex mb-md-5'>
                 <Image style={{width: 120, maxHeight: 180}} className='me-2 me-md-3' variant="top" src={`https://image.tmdb.org/t/p/w154/${movie.poster_path}`} />
-                <div>
-                    {/* <p>{movie.overview.substring(0, 155) + "..."}</p> */}
+                <div className='d-flex flex-column align-items-start'>
+                    {movie.release_date && <span className=''><b>{getYearFromDateString(movie.release_date)}</b></span>}
                     <p style={{textAlign: 'start'}}>{movie.overview}</p>
                 </div>
             </div>

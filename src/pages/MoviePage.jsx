@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
-import { Col, Figure } from 'react-bootstrap';
+import { Figure } from 'react-bootstrap';
 import { getYearFromDateString } from '../utilities/getYearFromDateString';
 import { convertMinutesToHours } from '../utilities/convertMinutesToHours'
 import { getMovieById } from '../serveces/API'

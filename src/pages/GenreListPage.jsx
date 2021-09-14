@@ -7,8 +7,7 @@ import Button from 'react-bootstrap/Button'
 const GenreListPage = () => {
     const history = useHistory()
     const { data: genres, isError } = useQuery([`genres`], getAllGenres)
-    console.log(`genres`, genres)
-
+    
     const handleClick = (genreId) => {
         history.push(`/genre/${genreId}`)
     }
@@ -19,8 +18,18 @@ const GenreListPage = () => {
                 <div>
                     <h2 className='my-4'>Discover Movies By Genre</h2>
                     <div className='d-flex flex-column flex-md-row flex-md-wrap justify-content-md-start my-4'>
-                        {genres.genres.map((genre, i) => {
-                            return (<Button className='my-2 mx-2' style={{width: 150}} onClick={() => handleClick(genre.id)} key={i} variant="outline-secondary">{genre.name}</Button>)
+                        {genres.map((genre, i) => {
+                            return (
+                                <Button 
+                                    key={i}
+                                    className='my-2 mx-2'
+                                    variant="outline-secondary"
+                                    style={{width: 150}}
+                                    onClick={() => handleClick(genre.id)}
+                                >
+                                    {genre.name}
+                                </Button>
+                            )
                         })}
                     </div>
                 </div>
