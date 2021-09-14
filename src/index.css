@@ -14,5 +14,11 @@ code {
 
 h1, h2 {
   font-size: 24px;
-  text-align: start;
+  text-align: center;
+}
+
+@media only screen and (min-width: 1200px) {
+  h1, h2 {
+    text-align: start;
+  }
 }

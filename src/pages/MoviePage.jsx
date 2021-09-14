@@ -6,7 +6,7 @@ import { getYearFromDateString } from '../utilities/getYearFromDateString';
 import { convertMinutesToHours } from '../utilities/convertMinutesToHours'
 import { getMovieById } from '../serveces/API'
 import CastInfo from '../components/CastInfo';
-import Button from '@restart/ui/esm/Button';
+import Button from 'react-bootstrap/Button';
 import replaceEmptyImage300x450 from '../img/replaceEmptyImage300x450.jpg'
 
 const MoviePage = () => {
@@ -59,7 +59,7 @@ const MoviePage = () => {
                         <div>
                             <p className='text-start'>{movie.overview}</p>
                         </div>
-                        <div>
+                        <div className='mb-5'>
                             {!showFullCast &&
                                 <div className='d-flex'>
                                     <div><b>Starring:</b></div>
@@ -73,7 +73,7 @@ const MoviePage = () => {
                                     </div>
                                 </div>
                             }
-                            {!showFullCast && <Button type="button" className="btn btn-link" onClick={() => setShowFullCast(true)}>All</Button>}
+                            {!showFullCast && <Button variant="outline-secondary" onClick={() => setShowFullCast(true)}>Show All</Button>}
                             {showFullCast && <CastInfo actors={movie.credits.cast} />}
                         </div>
                     </div>
