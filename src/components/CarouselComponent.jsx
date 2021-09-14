@@ -27,7 +27,7 @@ const CarouselComponent = ({ movieList }) => {
     };
 
     return (
-        <Carousel responsive={responsive} infinite={true} className='bg-dark'>
+        <Carousel responsive={responsive}>
             {movieList && movieList.map((movie, i) => {
                 return (
                     <MovieCard key={i} movieData={movie} />
