@@ -16,30 +16,32 @@ function App() {
     <div className="App">
       <MovieContext>
         <BrowserRouter>
-          <Navigation/>
-          <Switch>
-            <Route exact path="/">
-              <HomePage />
-            </Route>
-            <Route exact path="/history">
-              <HistoryPage />
-            </Route>
-            <Route exact path="/movie/:id">
-              <MoviePage />
-            </Route>
-            <Route exact path="/actor/:id">
-              <ActorInfoPage />
-            </Route>
-            <Route exact path="/genres">
-              <GenreListPage />
-            </Route>
-            <Route exact path="/genre/:id">
-              <MoviesByGenrePage />
-            </Route>
-            <Route>
-              <PageNotFound />
-            </Route>
-          </Switch>
+          <HistoryContext>
+            <Navigation />
+            <Switch>
+              <Route exact path="/">
+                <HomePage />
+              </Route>
+              <Route exact path="/history">
+                <HistoryPage />
+              </Route>
+              <Route exact path="/movie/:id">
+                <MoviePage />
+              </Route>
+              <Route exact path="/actor/:id">
+                <ActorInfoPage />
+              </Route>
+              <Route exact path="/genres">
+                <GenreListPage />
+              </Route>
+              <Route exact path="/genre/:id">
+                <MoviesByGenrePage />
+              </Route>
+              <Route>
+                <PageNotFound />
+              </Route>
+            </Switch>
+          </HistoryContext>
         </BrowserRouter>
       </MovieContext>
     </div>

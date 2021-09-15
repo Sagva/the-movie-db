@@ -5,7 +5,6 @@ import { getAllGenres } from '../serveces/API'
 import Button from 'react-bootstrap/Button'
 
 const GenreListPage = () => {
-    console.log(`I am on GenreListPage`)
     const history = useHistory()
     const { data: genres, isError } = useQuery([`genres`], getAllGenres)
     

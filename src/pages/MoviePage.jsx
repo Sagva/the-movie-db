@@ -1,19 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
-import { Figure } from 'react-bootstrap';
 import { getYearFromDateString } from '../utilities/getYearFromDateString';
 import { convertMinutesToHours } from '../utilities/convertMinutesToHours'
 import { getMovieById } from '../serveces/API'
 import CastInfo from '../components/CastInfo';
 import Button from 'react-bootstrap/Button';
+import Figure from 'react-bootstrap/Figure';
 import replaceEmptyImage300x450 from '../img/replaceEmptyImage300x450.jpg'
+import { HistoryContext } from '../contexts/HistoryContext';
 
 const MoviePage = () => {
     const { id } = useParams()
-
+    const {addLatestShownMovie} = useContext(HistoryContext)
     const { data: movie, isError } = useQuery([`movie-${id}`, id], () => getMovieById(id))
 
+    useEffect(()=>{
+        if(movie) {
+            addLatestShownMovie(movie)
+        }
+    },[movie])
     const [showFullCast, setShowFullCast] = useState(false)
 
 

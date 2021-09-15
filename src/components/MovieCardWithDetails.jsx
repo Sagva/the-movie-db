@@ -3,7 +3,7 @@ import Image from 'react-bootstrap/Image'
 import { useHistory } from 'react-router-dom'
 import {getYearFromDateString} from '../utilities/getYearFromDateString'
 
-const MovieByGenreCard = ({ movie }) => {
+const MovieCardWithDetails = ({ movie }) => {
     const history = useHistory()
 
     const handleClick = () => {
@@ -25,4 +25,4 @@ const MovieByGenreCard = ({ movie }) => {
     );
 }
 
-export default MovieByGenreCard;
+export default MovieCardWithDetails;

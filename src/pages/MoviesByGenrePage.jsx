@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { getMoviesByGenre, getAllGenres } from '../serveces/API'
-import MovieByGenreCard from '../components/MovieByGenreCard'
+import MovieCardWithDetails from '../components/MovieCardWithDetails'
 import PaginationComponent from '../components/PaginationComponent'
 import {findGengeName} from '../utilities/findGenreAName'
 
@@ -34,7 +34,7 @@ const MoviesByGenrePage = () => {
                 <div>
                     <h2 className='my-4 text-center'>Top 20 {genreName} Movies </h2>
                     <div>
-                        {data.results.map((movie, i) => <MovieByGenreCard key={i} movie={movie} />)}
+                        {data.results.map((movie, i) => <MovieCardWithDetails key={i} movie={movie} />)}
                     </div>
                     <PaginationComponent values={paginationValues} />
                 </div>
