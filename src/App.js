@@ -10,6 +10,7 @@ import Navigation from './components/Navigation'
 import GenreListPage from './pages/GenreListPage'
 import MoviesByGenrePage from './pages/MoviesByGenrePage';
 import HistoryPage from './pages/HistoryPage';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
                 <PageNotFound />
               </Route>
             </Switch>
+            <Footer/>
           </HistoryContext>
         </BrowserRouter>
       </MovieContext>
