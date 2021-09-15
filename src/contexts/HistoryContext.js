@@ -3,13 +3,13 @@ import { createContext, useState, useEffect } from 'react'
 export const HistoryContext = createContext()
 
 const HistoryContextProvider = (props) => {
-
-    const [lastShownMovies, setLastShownMovies] = useState(JSON.parse(localStorage.getItem('lastShownMovies')) || [])
-    const [isListChanged, setIsListChanged] = useState(false)
-
+    //getting data from LocalStorage 
+    const [lastShownMovies, setLastShownMovies] = useState(JSON.parse(localStorage.getItem('lastShownMovies')) || []) //if there is data in LocalStorage take it there, otherwise use an empty array
     const historyItemsLimit = 10
 
-    useEffect(() => {
+    //saving data to LocalStorage
+    const [isListChanged, setIsListChanged] = useState(false) 
+    useEffect(() => { //as soon as the list of lastShownMovies is changed, put a new list to the LocalStorage
         if(isListChanged) {
             localStorage.setItem('lastShownMovies', JSON.stringify(lastShownMovies))
             setIsListChanged(false)
@@ -17,12 +17,23 @@ const HistoryContextProvider = (props) => {
     }, [isListChanged])
 
     const addLatestShownMovie = (movie) => {
-        if (!lastShownMovies.includes(movie) && lastShownMovies.length < historyItemsLimit) {//if the movie is not in the list and amount of items in the list less than 10
-            setLastShownMovies((prevState) => [movie, ...prevState]) //just add
+        //check if the movie is already in the list
+        let isMovieInList
+        lastShownMovies.map(oneMovie => {
+            if(oneMovie.id === movie.id){
+                 isMovieInList = true
+            } else {
+                isMovieInList = false
+            }
+        })
+        
+        // if (!lastShownMovies.includes(movie) && lastShownMovies.length < historyItemsLimit)
+        if (!isMovieInList && lastShownMovies.length < historyItemsLimit) {//if the movie is not in the list and amount of items in the list less than 10
+            setLastShownMovies((prevState) => [movie, ...prevState]) //add movie
             setIsListChanged(true)
         }
-        else if (lastShownMovies.includes(movie)) { //if the movie is already in the list
-            setLastShownMovies(lastShownMovies.filter((m) => m !== movie))//delete from the list
+        else if (isMovieInList) { //if the movie is already in the list
+            setLastShownMovies(lastShownMovies.filter((m) => m.id !== movie.id))//delete from the list
             setLastShownMovies((prevState) => [movie, ...prevState])//add again to the beginning, so the last visited movie is always in the beginning
             setIsListChanged(true)
         }
@@ -37,7 +48,7 @@ const HistoryContextProvider = (props) => {
 
     const values = {
         addLatestShownMovie, //imported and used on MoviePage
-        lastShownMovies      //imported and used on History
+        lastShownMovies      //imported and used on HistoryPage
     }
 
     return (
