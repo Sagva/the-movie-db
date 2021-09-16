@@ -1,12 +1,41 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { getMoviesByGenre, getAllGenres } from '../serveces/API'
 import MovieCardWithDetails from '../components/MovieCardWithDetails'
 import PaginationComponent from '../components/PaginationComponent'
 import {findGengeName} from '../utilities/findGenreAName'
+import { useQueryParam, NumberParam } from 'use-query-params';
+    
 
 const MoviesByGenrePage = () => {
+    let location = useLocation(); 
+    const [pageParam, setPageParam] = useQueryParam('page', NumberParam);
+    const [currentPage, setCurrentPage] = useState(1)
+    
+
+    useEffect(() => {
+        if(pageParam && currentPage !== pageParam) {
+            setCurrentPage(pageParam)
+        }
+    }, [pageParam]);
+
+    useEffect(() => {
+        if(currentPage && currentPage !== pageParam) {
+            setPageParam(currentPage)
+        } 
+    }, [currentPage]);
+
+      
+    useEffect(() => {
+        if(!pageParam) {
+            setPageParam(1)
+        } else {
+            setPageParam(parseInt(location.search.match(/([\d]+)/g)))
+        }
+         
+    }, []);
+
     const { id } = useParams() //genre's id
     const { data: genres} = useQuery([`genresList`], getAllGenres)
     const [genreName, setGenreName] = useState(null)
@@ -17,7 +46,6 @@ const MoviesByGenrePage = () => {
         }
     }, [genres, id]);
 
-    const [currentPage, setCurrentPage] = useState(1)
     
     const { data, isError } = useQuery([`moviesByGenre-${id}`, { id, currentPage }], () => getMoviesByGenre(id, currentPage))
     

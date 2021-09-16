@@ -11,41 +11,44 @@ import GenreListPage from './pages/GenreListPage'
 import MoviesByGenrePage from './pages/MoviesByGenrePage';
 import HistoryPage from './pages/HistoryPage';
 import Footer from './components/Footer';
+import { QueryParamProvider } from 'use-query-params'
 
 function App() {
   return (
     <div className="App">
-      <MovieContext>
-        <BrowserRouter>
-          <HistoryContext>
-            <Navigation />
-            <Switch>
-              <Route exact path="/">
-                <HomePage />
-              </Route>
-              <Route exact path="/history">
-                <HistoryPage />
-              </Route>
-              <Route exact path="/movie/:id">
-                <MoviePage />
-              </Route>
-              <Route exact path="/actor/:id">
-                <ActorInfoPage />
-              </Route>
-              <Route exact path="/genres">
-                <GenreListPage />
-              </Route>
-              <Route exact path="/genre/:id">
-                <MoviesByGenrePage />
-              </Route>
-              <Route>
-                <PageNotFound />
-              </Route>
-            </Switch>
-            <Footer/>
-          </HistoryContext>
-        </BrowserRouter>
-      </MovieContext>
+      <BrowserRouter>
+      <QueryParamProvider ReactRouterRoute={Route}>
+        <MovieContext>
+            <HistoryContext>
+              <Navigation />
+              <Switch>
+                <Route exact path="/">
+                  <HomePage />
+                </Route>
+                <Route exact path="/history">
+                  <HistoryPage />
+                </Route>
+                <Route exact path="/movie/:id">
+                  <MoviePage />
+                </Route>
+                <Route exact path="/actor/:id">
+                  <ActorInfoPage />
+                </Route>
+                <Route exact path="/genres">
+                  <GenreListPage />
+                </Route>
+                <Route exact path="/genre/:id?">
+                  <MoviesByGenrePage />
+                </Route>
+                <Route>
+                  <PageNotFound />
+                </Route>
+              </Switch>
+              <Footer />
+            </HistoryContext>
+        </MovieContext>
+      </QueryParamProvider>
+          </BrowserRouter>
     </div>
   );
 }
