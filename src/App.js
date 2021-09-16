@@ -37,7 +37,7 @@ function App() {
                 <Route exact path="/genres">
                   <GenreListPage />
                 </Route>
-                <Route exact path="/genre/:id?">
+                <Route exact path="/genre/:id">
                   <MoviesByGenrePage />
                 </Route>
                 <Route>

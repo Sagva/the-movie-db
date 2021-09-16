@@ -9,7 +9,7 @@ const GenreListPage = () => {
     const { data: genres, isError } = useQuery([`genres`], getAllGenres)
     
     const handleClick = (genreId) => {
-        history.push(`/genre/${genreId}`)
+        history.push(`/genre/${genreId}?page=1`)
     }
 
     const renderGenres = () => {
