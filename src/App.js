@@ -10,50 +10,57 @@ import MoviesByGenrePage from './pages/MoviesByGenrePage';
 import HistoryPage from './pages/HistoryPage';
 import Footer from './components/Footer';
 import { QueryParamProvider } from 'use-query-params'
-import TopRated from './pages/TopRatedMovies';
-import LatestMovies from './pages/LatestMovies';
-import PopularMovies from './pages/PopularMovies';
+import TopRatedPage from './pages/TopRatedMoviesPage';
+import LatestMoviesPage from './pages/LatestMoviesPage';
+import PopularMoviesPage from './pages/PopularMoviesPage';
+import SearchResultPage from './pages/SearchResultPage';
+import SearchContext from './contexts/SearchContext';
 
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
-        <QueryParamProvider ReactRouterRoute={Route}>
-          <HistoryContext>
-            <Navigation />
-            <Switch>
-              <Route exact path="/top-rated">
-                <TopRated />
-              </Route>
-              <Route exact path="/latest">
-                <LatestMovies />
-              </Route>
-              <Route exact path="/popular">
-                <PopularMovies />
-              </Route>
-              <Route exact path="/history">
-                <HistoryPage />
-              </Route>
-              <Route exact path="/movie/:id">
-                <MoviePage />
-              </Route>
-              <Route exact path="/actor/:id">
-                <ActorInfoPage />
-              </Route>
-              <Route exact path="/genres">
-                <GenreListPage />
-              </Route>
-              <Route exact path="/genre/:id">
-                <MoviesByGenrePage />
-              </Route>
-              <Route>
-                <PageNotFound />
-              </Route>
-            </Switch>
-            <Footer />
-          </HistoryContext>
-        </QueryParamProvider>
-      </BrowserRouter>
+        <BrowserRouter>
+      <SearchContext>
+          <QueryParamProvider ReactRouterRoute={Route}>
+            <HistoryContext>
+              <Navigation />
+              <Switch>
+                <Route exact path="/top-rated">
+                  <TopRatedPage />
+                </Route>
+                <Route exact path="/latest">
+                  <LatestMoviesPage />
+                </Route>
+                <Route exact path="/popular">
+                  <PopularMoviesPage />
+                </Route>
+                <Route exact path="/search-result">
+                  <SearchResultPage />
+                </Route>
+                <Route exact path="/history">
+                  <HistoryPage />
+                </Route>
+                <Route exact path="/movie/:id">
+                  <MoviePage />
+                </Route>
+                <Route exact path="/actor/:id">
+                  <ActorInfoPage />
+                </Route>
+                <Route exact path="/genres">
+                  <GenreListPage />
+                </Route>
+                <Route exact path="/genre/:id">
+                  <MoviesByGenrePage />
+                </Route>
+                <Route>
+                  <PageNotFound />
+                </Route>
+              </Switch>
+              <Footer />
+            </HistoryContext>
+          </QueryParamProvider>
+      </SearchContext>
+        </BrowserRouter>
     </div>
   );
 }

@@ -4,7 +4,7 @@ import { addPosterLink } from '../utilities/addPosterLink' //help function that 
 import { getTopRatedMovies } from '../serveces/API'
 import RenderMovie from '../components/RenderMovie';
 
-const TopRatedMovies = () => {
+const TopRatedMoviesPage = () => {
 
     const [topRatedMovies, setTopRatedMovies] = useState(null)
     const { data: topRated, isError: errorTopRated } = useQuery('topRated', getTopRatedMovies)
@@ -26,4 +26,4 @@ const TopRatedMovies = () => {
 
 }
 
-export default TopRatedMovies;
+export default TopRatedMoviesPage;
