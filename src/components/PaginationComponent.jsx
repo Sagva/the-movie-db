@@ -6,7 +6,7 @@ const PaginationComponent = ({ values }) => {
     const { currentPage, setCurrentPage, totalPages } = values
 
     return (
-        <div className='my-5'>
+        <div className='my-3'>
             <Button
                 variant="secondary"
                 className='mx-2'

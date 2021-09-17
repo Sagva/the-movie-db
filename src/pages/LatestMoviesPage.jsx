@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { addPosterLink } from '../utilities/addPosterLink' //help function that add link to poster to gotten movie
 import { getLatestMovies } from '../serveces/API'
-import RenderMovie from '../components/RenderMovie';
+import RenderMovies from '../components/RenderMovies';
 
 const LatestMoviesPage = () => {
 
@@ -19,7 +19,7 @@ const LatestMoviesPage = () => {
         <div className='container'>
             <h2 className='my-2 ms-2'>Latest Movies</h2>
             {/* Rendermovie returns either MovieList or error message or loading message*/}
-            <RenderMovie movieList={latestMovies} errorMessage={errorLatest} />
+            <RenderMovies movieList={latestMovies} errorMessage={errorLatest} />
         </div>
     )
 

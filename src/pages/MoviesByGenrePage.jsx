@@ -57,7 +57,7 @@ const MoviesByGenrePage = () => {
     }
 
     return (
-        <div className='container'>
+        <div className='container mb-5'>
             {renderMovieList()}
         </div>
     );

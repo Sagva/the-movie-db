@@ -14,6 +14,7 @@ const MovieCard = ({movieData}) => {
         <Card className='mx-2 my-2' style={{cursor: 'pointer', height: 235, width: 120}} onClick={handleClick}>
         <Card.Img variant="top" 
           src={movieData.posterLink ? `https://image.tmdb.org/t/p/w92${movieData.posterLink}` : replaceEmptyImage300x450} 
+          style={{height: 170}}
           />
         <Card.Body style={{padding: 2}}>
           <Card.Title style={{fontSize: 12}}>{movieData.title}</Card.Title>

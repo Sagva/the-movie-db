@@ -16,8 +16,8 @@ const Navigation = () => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		setSearchValue(value)
+		history.push(`/search-result?page=1&query=${value}`)
 		setValue('')
-		history.push(`/search-result`)
 	}
 	return (
 		<Navbar bg="dark" variant="dark" expand="md">

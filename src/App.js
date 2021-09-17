@@ -34,7 +34,7 @@ function App() {
                 <Route exact path="/popular">
                   <PopularMoviesPage />
                 </Route>
-                <Route exact path="/search-result">
+                <Route path="/search-result">
                   <SearchResultPage />
                 </Route>
                 <Route exact path="/history">

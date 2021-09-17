@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useQueryParam, NumberParam } from 'use-query-params';
+import { useQueryParam, NumberParam, StringParam } from 'use-query-params';
 import { useLocation } from 'react-router-dom';
 
 const useLocationAndQueryParams = () => {
     //for working back-button in the browser together with paginating
     let location = useLocation() // for looking after changing of url
     const [pageParam, setPageParam] = useQueryParam('page', NumberParam);//ads '?page=' to url, undefined in the beginig
+    const [queryParam, setQueryParam] = useQueryParam('query', StringParam)//adds 'query=' to the url
     const [currentPage, setCurrentPage] = useState(1)
 
     
@@ -31,7 +32,8 @@ const useLocationAndQueryParams = () => {
 
     return {
         currentPage,
-        setCurrentPage
+        setCurrentPage,
+        setQueryParam
     }
 }
  

@@ -3,16 +3,16 @@ import React, { useContext, useEffect, useState } from 'react';
 import { getSearchedMovies } from '../serveces/API'
 import { useQuery } from 'react-query';
 import { SearchContext } from '../contexts/SearchContext';
-import RenderMovie from '../components/RenderMovie';
+import RenderMovies from '../components/RenderMovies';
 import { addPosterLink } from '../utilities/addPosterLink'
 import PaginationComponent from '../components/PaginationComponent';
 import useLocationAndQueryParams from '../hooks/useLocalionAndQueryParams';
-import { useQueryParam, StringParam } from 'use-query-params';
+// import { useQueryParam, StringParam } from 'use-query-params';
 
 const SearchResultPage = () => {
     const { searchValue } = useContext(SearchContext) //get query value from user (from navigation -> context -> this file)
-    const [queryParam, setQueryParam] = useQueryParam('query', StringParam)//adds 'query=' to the url
-    const { currentPage, setCurrentPage } = useLocationAndQueryParams() //adds '?page=' and synchronizes current page and url page
+    
+    const { currentPage, setCurrentPage, setQueryParam } = useLocationAndQueryParams() //adds '?page=' and synchronizes current page and url page
     const [searchedMovies, setSearchedMovies] = useState(null)
 
     //send page and query to API, get data back
@@ -38,10 +38,10 @@ const SearchResultPage = () => {
 
     return (
         <div className='container'>
-            <h2 className='my-2 ms-2'>Search Result</h2>
+            <h2 className='my-2 ms-2'>Search Result {searchValue && <span>for "{searchValue}"</span>}</h2>
             {/* Rendermovie returns either MovieList or error message or loading message*/}
-            <RenderMovie movieList={searchedMovies} errorMessage={isError} />
-            <PaginationComponent values={paginationValues} />
+            <RenderMovies movieList={searchedMovies} errorMessage={isError} />
+            {searchedMovies && searchedMovies.length > 0 && <PaginationComponent values={paginationValues} />}
         </div>
     )
 }
