@@ -15,6 +15,7 @@
     "react-query": "^3.23.1",
     "react-router-dom": "^5.3.0",
     "react-scripts": "4.0.3",
+    "swiper": "^6.8.4",
     "use-query-params": "^1.2.3",
     "web-vitals": "^1.1.2"
   },

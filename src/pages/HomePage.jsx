@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { MovieContext } from '../contexts/MovieContext';
 import MovieList from '../components/MovieList';
+import CarouselComponent from '../components/CarouselComponent'
 
 const HomePage = () => {
 
@@ -9,7 +10,8 @@ const HomePage = () => {
     const renderMovie = (movieList, errorMessage) => {
         if (movieList) {
             return (
-                <MovieList movieList={movieList}/>
+                <CarouselComponent movies={movieList}/>
+                // <MovieList movieList={movieList}/>
             )
         } else if (errorMessage) {
             return (
@@ -24,16 +26,17 @@ const HomePage = () => {
 
     return (
         <div className='container'>
+            
 
             <h2 className='my-3 ms-2'>Latest Movies</h2>
             {renderMovie(latestMovies, errorLatest)}
            
 
-            <h2 className='my-3 ms-2'>Popular Movies</h2>
+            {/* <h2 className='my-3 ms-2'>Popular Movies</h2>
             {renderMovie(popularMovies, errorPopular)}
 
             <h2 className='my-3 ms-2'>Top-rated Movies</h2>
-            {renderMovie(topRatedMovies, errorTopRated)}
+            {renderMovie(topRatedMovies, errorTopRated)} */}
         </div>
     )
 
