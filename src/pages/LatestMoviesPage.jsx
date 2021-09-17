@@ -1,29 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { addPosterLink } from '../utilities/addPosterLink' //help function that add link to poster to gotten movie
-import { getPopularMovies } from '../serveces/API'
+import { getLatestMovies } from '../serveces/API'
 import RenderMovie from '../components/RenderMovie';
 
-const PopularMovies = () => {
+const LatestMoviesPage = () => {
 
-    const [popularMovies, setPopularMovies] = useState(null)
-    const {data:popular, isError:errorPopular} = useQuery('popularMovies', getPopularMovies)
+    const [latestMovies, setLatestMovies] = useState(null)
+    const { data: latest, isError: errorLatest } = useQuery('latestMovies', getLatestMovies)
 
     useEffect(() => {//as soon as we got data from API add to each movie a link to poster and set it to the state
-        if(popular) {
-            setPopularMovies(addPosterLink(popular.results))
+        if (latest) {
+            setLatestMovies(addPosterLink(latest.results))
         }
-    }, [popular])
+    }, [latest])
 
     return (
         <div className='container'>
-            <h2 className='my-2 ms-2'>Popular Movies</h2>
+            <h2 className='my-2 ms-2'>Latest Movies</h2>
             {/* Rendermovie returns either MovieList or error message or loading message*/}
-            <RenderMovie movieList={popularMovies} errorMessage={errorPopular} />
+            <RenderMovie movieList={latestMovies} errorMessage={errorLatest} />
         </div>
     )
 
 
 }
 
-export default PopularMovies;
+export default LatestMoviesPage;
