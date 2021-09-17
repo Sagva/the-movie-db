@@ -13,6 +13,10 @@ export const getPopularMovies = async () => {
     const response = await axios.get(`3/movie/popular?api_key=${api_key}&language=en-US&page=1`)
     return response.data
 }
+export const getPopularForWeek = async () => {
+    const response = await axios.get(`3/trending/movie/week?api_key=${api_key}&page=1`)
+    return response.data
+}
 export const getTopRatedMovies = async () => {
     const response = await axios.get(`3/movie/top_rated?api_key=${api_key}&language=en-US&page=1`)
     return response.data
@@ -33,8 +37,6 @@ export const getMoviesByGenre = async (genreId, page) => {
     const response = await axios.get(`/3/discover/movie?api_key=${api_key}&language=en-US&include_adult=false&sort_by=popularity.desc&with_genres=${genreId}&page=${page}`)
     return response.data
 }
-
-
 export const getSearchedMovies = async (page, query) => {
     const response = await axios.get(`3/search/movie?api_key=${api_key}&query=${query}&page=${page}`)
     return response.data
