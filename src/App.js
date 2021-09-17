@@ -13,18 +13,22 @@ import { QueryParamProvider } from 'use-query-params'
 import TopRatedPage from './pages/TopRatedMoviesPage';
 import LatestMoviesPage from './pages/LatestMoviesPage';
 import PopularMoviesPage from './pages/PopularMoviesPage';
+import SimilarMoviesPage from './pages/SimilarMoviesPage'
 import SearchResultPage from './pages/SearchResultPage';
 import SearchContext from './contexts/SearchContext';
 
 function App() {
   return (
     <div className="App">
-        <BrowserRouter>
-      <SearchContext>
+      <BrowserRouter>
+        <SearchContext>
           <QueryParamProvider ReactRouterRoute={Route}>
             <HistoryContext>
               <Navigation />
               <Switch>
+                <Route exact path="/">
+                  <TopRatedPage />
+                </Route>
                 <Route exact path="/top-rated">
                   <TopRatedPage />
                 </Route>
@@ -52,6 +56,9 @@ function App() {
                 <Route exact path="/genre/:id">
                   <MoviesByGenrePage />
                 </Route>
+                <Route exact path="/simiral-movie/:id">
+                  <SimilarMoviesPage />
+                </Route>
                 <Route>
                   <PageNotFound />
                 </Route>
@@ -59,8 +66,8 @@ function App() {
               <Footer />
             </HistoryContext>
           </QueryParamProvider>
-      </SearchContext>
-        </BrowserRouter>
+        </SearchContext>
+      </BrowserRouter>
     </div>
   );
 }

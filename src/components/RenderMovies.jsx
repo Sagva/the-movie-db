@@ -9,7 +9,7 @@ const RenderMovies = (props) => {
         )
     } else if (movieList && movieList.length === 0) {
         return (
-           <div className='warning'>Sorry, no movies found</div>
+            <div className='warning'>Sorry, no movies found</div>
         )
     }
     else if (errorMessage) {

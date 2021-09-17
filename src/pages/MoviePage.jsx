@@ -12,14 +12,14 @@ import { HistoryContext } from '../contexts/HistoryContext';
 
 const MoviePage = () => {
     const { id } = useParams()
-    const {addLatestShownMovie} = useContext(HistoryContext)
+    const { addLatestShownMovie } = useContext(HistoryContext)
     const { data: movie, isError } = useQuery([`movie-${id}`, id], () => getMovieById(id))
 
-    useEffect(()=>{
-        if(movie) {
+    useEffect(() => {
+        if (movie) {
             addLatestShownMovie(movie)
         }
-    },[movie])
+    }, [movie])
     const [showFullCast, setShowFullCast] = useState(false)
 
 
@@ -34,13 +34,14 @@ const MoviePage = () => {
                                 <div className='d-flex'>
                                     {movie.release_date && <span><b>{getYearFromDateString(movie.release_date)},</b></span>}
                                     {movie.genres.map((genre, i) => {
+                                        // take only first genre's name from the list
                                         if (i <= 1) {
                                             return <span className='mx-1' key={i}><b>{genre.name}</b></span>
                                         }
                                         return null
                                     })}
                                 </div>
-                                <div className='d-flex'>
+                                <div className='d-flex' style={{ fontSize: 15 }}>
                                     {movie.runtime && <div><b>{convertMinutesToHours(movie.runtime)}</b></div>}
                                     <div>{movie.production_countries.map((country, i) => <span key={i} className='px-2'><b>{country.name}</b></span>)}</div>
                                 </div>
@@ -50,6 +51,14 @@ const MoviePage = () => {
                                         {movie.spoken_languages.map((lang, i) => <span key={i}>{lang.english_name} </span>)}
                                     </div>
                                 }
+                                <Link
+                                    to={{
+                                        pathname: `/simiral-movie/${movie.id}`,
+                                        state: { movieTitle: `${movie.title}` },
+                                    }}
+                                >
+                                    Similar movies &#8594;
+                                </Link>
                             </div>
                             <Figure className='me-md-5'>
                                 <Figure.Image
@@ -79,7 +88,7 @@ const MoviePage = () => {
                                     </div>
                                 </div>
                             }
-                            {!showFullCast && <Button variant="outline-secondary" onClick={() => setShowFullCast(true)}>Show All</Button>}
+                            {!showFullCast && <Button variant="outline-secondary" className='my-3' onClick={() => setShowFullCast(true)}>Show All</Button>}
                             {showFullCast && <CastInfo actors={movie.credits.cast} />}
                         </div>
                     </div>

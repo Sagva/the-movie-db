@@ -7,10 +7,10 @@ import RenderMovies from '../components/RenderMovies';
 const PopularMoviesPage = () => {
 
     const [popularMovies, setPopularMovies] = useState(null)
-    const {data:popular, isError:errorPopular} = useQuery('popularMovies', getPopularMovies)
+    const { data: popular, isError: errorPopular } = useQuery('popularMovies', getPopularMovies)
 
     useEffect(() => {//as soon as we got data from API add to each movie a link to poster and set it to the state
-        if(popular) {
+        if (popular) {
             setPopularMovies(addPosterLink(popular.results))
         }
     }, [popular])

@@ -12,7 +12,7 @@ const PaginationComponent = ({ values }) => {
                 className='mx-2'
                 onClick={() => setCurrentPage((currentPage) => currentPage - 1)}
                 disabled={currentPage === 1}
-                style={{width: 85}}
+                style={{ width: 85 }}
             >
                 Previous
             </Button>
@@ -24,7 +24,7 @@ const PaginationComponent = ({ values }) => {
                 className='mx-2'
                 onClick={() => setCurrentPage((currentPage) => currentPage + 1)}
                 disabled={currentPage === totalPages}
-                style={{width: 85}}
+                style={{ width: 85 }}
             >
                 Next
             </Button>

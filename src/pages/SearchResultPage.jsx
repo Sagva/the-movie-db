@@ -7,12 +7,11 @@ import RenderMovies from '../components/RenderMovies';
 import { addPosterLink } from '../utilities/addPosterLink'
 import PaginationComponent from '../components/PaginationComponent';
 import useLocationAndQueryParams from '../hooks/useLocalionAndQueryParams';
-// import { useQueryParam, StringParam } from 'use-query-params';
 
 const SearchResultPage = () => {
     const { searchValue } = useContext(SearchContext) //get query value from user (from navigation -> context -> this file)
-    
-    const { currentPage, setCurrentPage, setQueryParam } = useLocationAndQueryParams() //adds '?page=' and synchronizes current page and url page
+
+    const { currentPage, setCurrentPage, setQueryParam } = useLocationAndQueryParams() //adds  '?page=' and '&query=', and synchronizes current page and url page
     const [searchedMovies, setSearchedMovies] = useState(null)
 
     //send page and query to API, get data back
