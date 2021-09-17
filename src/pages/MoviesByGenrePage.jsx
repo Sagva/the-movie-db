@@ -4,7 +4,7 @@ import { useQuery } from 'react-query';
 import { getMoviesByGenre, getAllGenres } from '../serveces/API'
 import MovieCardWithDetails from '../components/MovieCardWithDetails'
 import PaginationComponent from '../components/PaginationComponent'
-import {findGengeName} from '../utilities/findGenreAName'
+import {findGengeName} from '../utilities/findGenresName'
 import { useQueryParam, NumberParam } from 'use-query-params';
     
 

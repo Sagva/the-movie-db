@@ -11,12 +11,12 @@ const MovieCard = ({movieData}) => {
     }
    
     return ( 
-        <Card className='mx-2 my-2' style={{cursor: 'pointer'}} onClick={handleClick}>
+        <Card className='mx-2 my-2' style={{cursor: 'pointer', height: 235, width: 120}} onClick={handleClick}>
         <Card.Img variant="top" 
           src={movieData.posterLink ? `https://image.tmdb.org/t/p/w92${movieData.posterLink}` : replaceEmptyImage300x450} 
-          style={{height: 230}}/>
-        <Card.Body>
-          <Card.Title style={{fontSize: 14, height: 30}}>{movieData.title}</Card.Title>
+          />
+        <Card.Body style={{padding: 2}}>
+          <Card.Title style={{fontSize: 12}}>{movieData.title}</Card.Title>
         </Card.Body>
       </Card>
     );
