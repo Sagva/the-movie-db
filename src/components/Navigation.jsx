@@ -21,8 +21,8 @@ const Navigation = () => {
 	}
 	return (
 		<Navbar bg="dark" variant="dark" expand="md">
-			<Container>
-				<Nav>
+			<Container fluid='md'>
+				<Nav className='flex-row flex-md-column flex-lg-row align-items-md-start'>
 					<NavLink to="/top-rated" className="nav-link navbar-brand">
 						Top Rated
 					</NavLink>
@@ -38,6 +38,7 @@ const Navigation = () => {
 						type="search"
 						placeholder="Search for movies"
 						className="mr-2"
+						style={{ minWidth: 160 }}
 						aria-label="Search"
 						value={value}
 						onChange={(e) => setValue(e.target.value)}
