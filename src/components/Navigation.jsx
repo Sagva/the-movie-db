@@ -16,20 +16,20 @@ const Navigation = () => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		setSearchValue(value)
-		history.push(`/search-result?page=1&query=${value}`)
+		history.push(`${process.env.PUBLIC_URL}/search-result?page=1&query=${value}`)
 		setValue('')
 	}
 	return (
 		<Navbar bg="dark" variant="dark" expand="md">
 			<Container fluid='md'>
 				<Nav className='flex-row flex-md-column flex-lg-row align-items-md-start'>
-					<NavLink to="/top-rated" className="nav-link navbar-brand">
+					<NavLink to={`${process.env.PUBLIC_URL}/top-rated`} className="nav-link navbar-brand">
 						Top Rated
 					</NavLink>
-					<NavLink to="/latest" className="nav-link navbar-brand">
+					<NavLink to={`${process.env.PUBLIC_URL}/latest`} className="nav-link navbar-brand">
 						Latest
 					</NavLink>
-					<NavLink to="/popular" className="nav-link navbar-brand">
+					<NavLink to={`${process.env.PUBLIC_URL}/popular`} className="nav-link navbar-brand">
 						Popular
 					</NavLink>
 				</Nav>
@@ -48,10 +48,10 @@ const Navigation = () => {
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 				<Navbar.Collapse id="basic-navbar-nav">
 					<Nav className="ms-auto">
-						<NavLink to="/genres" className="nav-link">
+						<NavLink to={`${process.env.PUBLIC_URL}/genres`} className="nav-link">
 							Find a movie by genre
 						</NavLink>
-						<NavLink to="/history" className="nav-link">
+						<NavLink to={`${process.env.PUBLIC_URL}/history`} className="nav-link">
 							History
 						</NavLink>
 					</Nav>

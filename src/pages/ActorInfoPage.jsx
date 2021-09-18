@@ -48,7 +48,7 @@ const ActorInfoPage = () => {
                                             src={movie.poster_path ? `https://image.tmdb.org/t/p/w92${movie.poster_path}` : replaceEmptyImage70x90} 
                                         />
                                         <div className='d-flex flex-column justify-content-center align-items-start'>
-                                            <Link to={`/movie/${movie.id}`}>
+                                            <Link to={`${process.env.PUBLIC_URL}/movie/${movie.id}`}>
                                                 {movie.title} ({movie.release_date && getYearFromDateString(`${movie.release_date}`)})
                                             </Link>
                                             { <span className='text-secondary font-weight-light small'>{movie.character}</span>}

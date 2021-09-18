@@ -26,37 +26,37 @@ function App() {
             <HistoryContext>
               <Navigation />
               <Switch>
-                <Route exact path="/">
+                <Route exact path={`${process.env.PUBLIC_URL}/`}>
                   <TopRatedPage />
                 </Route>
-                <Route exact path="/top-rated">
+                <Route exact path={`${process.env.PUBLIC_URL}/top-rated`}>
                   <TopRatedPage />
                 </Route>
-                <Route exact path="/latest">
+                <Route exact path={`${process.env.PUBLIC_URL}/latest`}>
                   <LatestMoviesPage />
                 </Route>
-                <Route exact path="/popular">
+                <Route exact path={`${process.env.PUBLIC_URL}/popular`}>
                   <PopularMoviesPage />
                 </Route>
-                <Route path="/search-result">
+                <Route path={`${process.env.PUBLIC_URL}/search-result`}>
                   <SearchResultPage />
                 </Route>
-                <Route exact path="/history">
+                <Route exact path={`${process.env.PUBLIC_URL}/history`}>
                   <HistoryPage />
                 </Route>
-                <Route exact path="/movie/:id">
+                <Route exact path={`${process.env.PUBLIC_URL}/movie/:id`}>
                   <MoviePage />
                 </Route>
-                <Route exact path="/actor/:id">
+                <Route exact path={`${process.env.PUBLIC_URL}/actor/:id`}>
                   <ActorInfoPage />
                 </Route>
-                <Route exact path="/genres">
+                <Route exact path={`${process.env.PUBLIC_URL}/genres`}>
                   <GenreListPage />
                 </Route>
-                <Route exact path="/genre/:id">
+                <Route exact path={`${process.env.PUBLIC_URL}/genre/:id`}>
                   <MoviesByGenrePage />
                 </Route>
-                <Route exact path="/simiral-movie/:id">
+                <Route exact path={`${process.env.PUBLIC_URL}/simiral-movie/:id`}>
                   <SimilarMoviesPage />
                 </Route>
                 <Route>

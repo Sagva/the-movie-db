@@ -53,7 +53,7 @@ const MoviePage = () => {
                                 }
                                 <Link
                                     to={{
-                                        pathname: `/simiral-movie/${movie.id}`,
+                                        pathname: `${process.env.PUBLIC_URL}/simiral-movie/${movie.id}`,
                                         state: { movieTitle: `${movie.title}` },
                                     }}
                                 >
@@ -81,7 +81,7 @@ const MoviePage = () => {
                                     <div className='d-flex flex-column align-items-start ms-3'>
                                         {movie.credits.cast.map((actor, i) => {
                                             if (i <= 4) {
-                                                return <Link to={`/actor/${actor.id}`} key={i}>{actor.name}</Link>
+                                                return <Link to={`${process.env.PUBLIC_URL}/actor/${actor.id}`} key={i}>{actor.name}</Link>
                                             }
                                             return null
                                         })}

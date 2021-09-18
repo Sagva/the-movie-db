@@ -8,7 +8,7 @@ const MovieCardWithDetails = ({ movie }) => {
     const history = useHistory()
 
     const handleClick = () => {
-        history.push(`/movie/${movie.id}`)
+        history.push(`${process.env.PUBLIC_URL}/movie/${movie.id}`)
     }
 
     return (

@@ -19,7 +19,7 @@ const CastInfo = ({ actors }) => {
                                 src={actor.profile_path ? `https://image.tmdb.org/t/p/w92${actor.profile_path}` : replaceEmptyImage70x90} 
                             />
                             <div className='d-flex flex-column justify-content-center align-items-start'>
-                                <Link to={`/actor/${actor.id}`} key={`${actor.name}-actor`}>{actor.name}</Link>
+                                <Link to={`${process.env.PUBLIC_URL}/actor/${actor.id}`} key={`${actor.name}-actor`}>{actor.name}</Link>
                                 <span key={`${actor.character}-character`} className='text-secondary font-weight-light small'>{actor.character}</span>
                             </div>
                         </div>
