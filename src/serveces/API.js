@@ -4,9 +4,8 @@ axios.defaults.baseURL = 'https://api.themoviedb.org/'
 
 const api_key = '2b3804bacf762b1be2ea916839739bf9'
 
-export const getLatestMovies = async () => {
-    // https://api.themoviedb.org/3/movie/now_playing?api_key=2b3804bacf762b1be2ea916839739bf9&language=en-US&page=1
-    const response = await axios.get(`/3/movie/now_playing?api_key=${api_key}&language=en-US&page=1`)
+export const getLatestMovies = async (page) => {
+    const response = await axios.get(`/3/movie/now_playing?api_key=${api_key}&language=en-US&page=${page}`)
     return response.data
 }
 export const getPopularMovies = async () => {
@@ -17,8 +16,8 @@ export const getPopularForWeek = async () => {
     const response = await axios.get(`3/trending/movie/week?api_key=${api_key}&page=1`)
     return response.data
 }
-export const getTopRatedMovies = async () => {
-    const response = await axios.get(`3/movie/top_rated?api_key=${api_key}&language=en-US&page=1`)
+export const getTopRatedMovies = async (page) => {
+    const response = await axios.get(`3/movie/top_rated?api_key=${api_key}&language=en-US&page=${page}`)
     return response.data
 }
 export const getMovieById = async (movieId) => {
