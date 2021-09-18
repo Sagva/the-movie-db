@@ -22,4 +22,5 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-to_delete.json
+/toDelete
+/the-movie-db 

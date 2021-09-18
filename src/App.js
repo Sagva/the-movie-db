@@ -1,10 +1,73 @@
 import './App.css';
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import HistoryContext from './contexts/HistoryContext';
+import MoviePage from './pages/MoviePage';
+import PageNotFound from './pages/PageNotFound';
+import ActorInfoPage from './pages/ActorInfoPage'
+import Navigation from './components/Navigation'
+import GenreListPage from './pages/GenreListPage'
+import MoviesByGenrePage from './pages/MoviesByGenrePage';
+import HistoryPage from './pages/HistoryPage';
+import Footer from './components/Footer';
+import { QueryParamProvider } from 'use-query-params'
+import TopRatedPage from './pages/TopRatedMoviesPage';
+import LatestMoviesPage from './pages/LatestMoviesPage';
+import PopularMoviesPage from './pages/PopularMoviesPage';
+import SimilarMoviesPage from './pages/SimilarMoviesPage'
+import SearchResultPage from './pages/SearchResultPage';
+import SearchContext from './contexts/SearchContext';
 
 function App() {
   return (
     <div className="App">
-      <p>This App is under construction</p>
-      <p>The app is a school project. This will be the interface for The Movie DB (TMDB) where you can see which of the latest films, the most popular films, and the top-rated films in Sweden. In the application, you can browse movies by genre. When you click on a movie, you can see information about it and which actors have participated in it. When you click on an actor, you will be able to see which films he has starred in.</p>
+      <BrowserRouter>
+        <SearchContext>
+          <QueryParamProvider ReactRouterRoute={Route}>
+            <HistoryContext>
+              <Navigation />
+              <Switch>
+                <Route exact path="/">
+                  <TopRatedPage />
+                </Route>
+                <Route exact path="/top-rated">
+                  <TopRatedPage />
+                </Route>
+                <Route exact path="/latest">
+                  <LatestMoviesPage />
+                </Route>
+                <Route exact path="/popular">
+                  <PopularMoviesPage />
+                </Route>
+                <Route path="/search-result">
+                  <SearchResultPage />
+                </Route>
+                <Route exact path="/history">
+                  <HistoryPage />
+                </Route>
+                <Route exact path="/movie/:id">
+                  <MoviePage />
+                </Route>
+                <Route exact path="/actor/:id">
+                  <ActorInfoPage />
+                </Route>
+                <Route exact path="/genres">
+                  <GenreListPage />
+                </Route>
+                <Route exact path="/genre/:id">
+                  <MoviesByGenrePage />
+                </Route>
+                <Route exact path="/simiral-movie/:id">
+                  <SimilarMoviesPage />
+                </Route>
+                <Route>
+                  <PageNotFound />
+                </Route>
+              </Switch>
+              <Footer />
+            </HistoryContext>
+          </QueryParamProvider>
+        </SearchContext>
+      </BrowserRouter>
     </div>
   );
 }
